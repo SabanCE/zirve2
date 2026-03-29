@@ -59,6 +59,9 @@ if (authConfig) {
 
 // Spreadsheet'teki tüm sheet adlarını kontrol et
 async function checkSheetNames() {
+  if (!auth) {
+    throw new Error("Google Sheets API credentials yüklenmedi");
+  }
   try {
     const client = await auth.getClient();
     const sheets = google.sheets({ version: "v4", auth: client });
@@ -81,8 +84,9 @@ async function checkSheetNames() {
 }
 
 // Sheets’ten veri çekme fonksiyonu
-async function getFormData() {
-  try {
+async function getFormData() {  if (!auth) {
+    throw new Error("Google Sheets API credentials yüklenmedi");
+  }  try {
     const client = await auth.getClient();
     const sheets = google.sheets({ version: "v4", auth: client });
 
@@ -156,10 +160,14 @@ app.listen(PORT, () => {
   console.log(`✓ Kazanan: http://localhost:${PORT}/winner`);
   
   // Startup'ta credentials'ı test et (opsiyonel)
-  checkSheetNames().then(sheets => {
-    console.log("✓ Google Sheets bağlantısı başarılı");
-  }).catch(err => {
-    console.warn("⚠️  Google Sheets bağlantısında sorun:", err.message);
-    console.warn("   Endpoint'ler erişilemeyecektir");
-  });
+  if (auth) {
+    checkSheetNames().then(sheets => {
+      console.log("✓ Google Sheets bağlantısı başarılı");
+    }).catch(err => {
+      console.warn("⚠️  Google Sheets bağlantısında sorun:", err.message);
+      console.warn("   Endpoint'ler erişilemeyecektir");
+    });
+  } else {
+    console.warn("⚠️  Google Sheets credentials yüklenmedi - /names ve /winner endpoint'leri çalışmayacaktır");
+  }
 });
