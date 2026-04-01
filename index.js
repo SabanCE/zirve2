@@ -153,11 +153,14 @@ app.get("/winner", async (req, res) => {
 });
 
 // Server'ı başlat
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
   console.log(`✓ Server çalışıyor: http://localhost:${PORT}`);
   console.log(`✓ Veriler: http://localhost:${PORT}/names`);
   console.log(`✓ Kazanan: http://localhost:${PORT}/winner`);
+  console.log("Base64 length:", process.env.GOOGLE_CREDENTIALS?.length);
+  console.log("PORT:", process.env.PORT);
+console.log("Base64 length:", process.env.GOOGLE_CREDENTIALS?.length);
   
   // Startup'ta credentials'ı test et (opsiyonel)
   if (auth) {

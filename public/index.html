@@ -7,9 +7,45 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
+    <!-- Dağ Background -->
+    <img id="dag-background" src="dag.png" alt="Dağ">
+
+    <!-- Login Sayfası -->
+    <div id="login-container" class="login-container">
+        <div class="login-card">
+            <div class="login-logos">
+                <img src="logo.jpg" alt="Logo 1" class="login-logo">
+                <img src="images.jfif" alt="Logo 2" class="login-logo">
+            </div>
+            <h1 class="login-title">EGZ-26 ÇEKİLİŞ</h1>
+            <p class="login-subtitle">Sisteme girmek için token giriniz</p>
+            <form id="login-form" class="login-form">
+                <input 
+                    type="password" 
+                    id="token-input" 
+                    class="login-input" 
+                    placeholder="Token gir..." 
+                    autocomplete="off"
+                >
+                <button type="submit" class="btn btn-primary login-btn">
+                    Giriş Yap
+                </button>
+            </form>
+            <p id="login-error" class="login-error hidden"></p>
+        </div>
+    </div>
+
+    <!-- Ana Sayfa -->
+    <div id="main-container" class="container hidden">
+        <div class="event-tagline">Bir Zirve, 5 Farklı Bakış</div>
+        
         <div class="card">
-            <h1>🎉 Kazanan Seçici</h1>
+            <div class="logo-section">
+                <img src="logo.jpg" alt="Logo" class="logo">
+                <img src="images.jfif" alt="Logo" class="logo">
+            </div>
+            
+            <h1>🎉 EGZ-26 ÇEKİLİŞİ</h1>
             
             <div class="section">
                 <h2>Katılımcılar</h2>
@@ -31,7 +67,7 @@
                     <p id="winner-name" class="winner-name">-</p>
                 </div>
                 <button id="reset-btn" class="btn btn-secondary">
-                    Tekrar Seç
+                    Yeni Çekiliş
                 </button>
             </div>
 
