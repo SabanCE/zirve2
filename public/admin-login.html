@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+    <link rel="icon" href="/favico.ico" type="image/x-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kazanan Seçici</title>
+    <title>Çekiliş</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <!-- Dağ Background -->
     <img id="dag-background" src="dag.png" alt="Dağ">
+    
+
+    <!-- Moved the admin-button-container outside of the login-container to ensure it is positioned correctly -->
+    <div class="admin-button-container">
+        <a href="check-email.html" class="admin-button" title="Admin Girişi">E-mail Kontrol Sayfası</a>
+    </div>
 
     <!-- Login Sayfası -->
     <div id="login-container" class="login-container">
@@ -32,6 +39,7 @@
             </form>
             <p id="login-error" class="login-error hidden"></p>
         </div>
+        
     </div>
 
     <!-- Ana Sayfa -->

@@ -70,11 +70,17 @@ body::after {
 .login-container {
     width: 100%;
     max-width: 500px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     z-index: 10;
-    position: relative;
 }
 
 .login-card {
@@ -110,7 +116,7 @@ body::after {
 
 .login-title {
     font-size: 2em;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+    background: linear-gradient(135deg, #000000, #764ba2);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -1007,4 +1013,35 @@ h2 {
 
 #back-btn:hover {
     background-color: rgba(255, 255, 255, 0.4);
+}
+
+.admin-button-container {
+    position: fixed;
+    top: 30px; /* Added padding to the top */
+    left: 20px;
+    z-index: 100;
+}
+
+.admin-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    transition: all 0.3s;
+    opacity: 0.8;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.admin-button:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
 }
