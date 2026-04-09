@@ -343,7 +343,7 @@ app.post("/check-email", async (req, res) => {
       });
     } else {
       // Firebase'e başarısız kontrol kaydını kaydet (opsiyonel)
-      await saveCheckToFirebase(cleanEmail, null, false);
+      // await saveCheckToFirebase(cleanEmail, null, false);
       
       res.json({
         found: false,
