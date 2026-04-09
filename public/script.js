@@ -1,6 +1,32 @@
 // Doğru token
 const CORRECT_TOKEN = 'EGZ-26';
 
+// Verileri logda göstermemek için loglama işlemini kaldırın
+const optimizeData = (data) => {
+    return data.map(entry => {
+        return {
+            tarih: entry[0],
+            adSoyad: entry[1],
+            email: entry[3],
+            bolum: entry[4],
+            sinif: entry[5],
+            cinsiyet: entry[6]
+        };
+    });
+};
+
+// Verileri sınırlandırın (örneğin, ilk 100 kişi)
+const limitData = (data, limit = 100) => {
+    return data.slice(0, limit);
+};
+
+const rawData = [
+    // ...mevcut veriler...
+];
+
+const filteredData = optimizeData(rawData);
+const limitedData = limitData(filteredData);
+
 document.addEventListener('DOMContentLoaded', () => {
     const loginContainer = document.getElementById('login-container');
     const mainContainer = document.getElementById('main-container');
