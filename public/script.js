@@ -44,9 +44,13 @@ document.addEventListener('DOMContentLoaded', () => {
         initializeApp();
     }
 
+    // Daha önce başarılı giriş yapıldıysa doğrudan ana sayfayı aç.
     if (storedLogin) {
         showMainPage();
+        return;
     }
+
+
 
     // Login işlemi
     loginForm.addEventListener('submit', (e) => {
@@ -57,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (enteredToken === CORRECT_TOKEN) {
             // Başarılı giriş
             localStorage.setItem('egzLoggedIn', 'true');
-            showMainPage();
+             window.location.href = 'qrcode.html';
             tokenInput.value = '';
         } else {
             // Başarısız giriş

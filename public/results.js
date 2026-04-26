@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (validDraw) {
         pageTitle.textContent = `📋 ${drawOptions[selectedDraw].label} Çekiliş Sonucu`;
         wrapper.classList.add('single-result');
+        document.querySelector('.results-card')?.classList.add('single-draw-mode');
         
         // Seçili çekilişin logosunu başlığın yanına ekle
         const logoImg = document.createElement('img');
@@ -35,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         renderDrawResult(selectedDraw, state, drawOptions, wrapper, true);
     } else {
         pageTitle.textContent = '📋 Tüm Çekiliş Sonuçları';
+        document.querySelector('.results-card')?.classList.add('all-results-mode');
         renderAllResults(state, drawOptions, wrapper);
     }
 
@@ -84,11 +86,11 @@ function renderDrawResult(key, state, drawOptions, wrapper, isSingle = false) {
                     block.appendChild(freeTitle);
                     
                     const freeList = document.createElement('ul');
+                    freeList.className = 'result-list-plantso';
                     free.forEach(winner => {
                         const li = document.createElement('li');
                         const name = typeof winner === 'string' ? winner : winner.name;
-                        const gender = typeof winner === 'string' ? '' : (winner.gender || '');
-                        li.textContent = name + (gender ? ` (${gender})` : '');
+                        li.textContent = name;
                         freeList.appendChild(li);
                     });
                     block.appendChild(freeList);
@@ -104,11 +106,11 @@ function renderDrawResult(key, state, drawOptions, wrapper, isSingle = false) {
                     block.appendChild(discountTitle);
                     
                     const discountList = document.createElement('ul');
+                    discountList.className = 'result-list-plantso';
                     discount.forEach(winner => {
                         const li = document.createElement('li');
                         const name = typeof winner === 'string' ? winner : winner.name;
-                        const gender = typeof winner === 'string' ? '' : (winner.gender || '');
-                        li.textContent = name + (gender ? ` (${gender})` : '');
+                        li.textContent = name;
                         discountList.appendChild(li);
                     });
                     block.appendChild(discountList);
@@ -128,11 +130,7 @@ function renderDrawResult(key, state, drawOptions, wrapper, isSingle = false) {
     } else {
         const title = document.createElement('h3');
         title.textContent = `${draw.prize}`;
-        title.style.marginBottom = '12px';
-        title.style.fontSize = '1.15em';
-        title.style.width = '100%';
-        title.style.textAlign = 'center';
-        title.style.fontWeight = '700';
+        title.className = 'single-draw-title';
         wrapper.appendChild(title);
 
         if (winners.length === 0) {
@@ -150,40 +148,18 @@ function renderDrawResult(key, state, drawOptions, wrapper, isSingle = false) {
                 if (free.length > 0) {
                     const freeTitle = document.createElement('h4');
                     freeTitle.textContent = '🎁 Bedava Workshop (5 kişi)';
-                    freeTitle.style.color = '#4CAF50';
-                    freeTitle.style.marginBottom = '10px';
-                    freeTitle.style.fontSize = '1.05em';
-                    freeTitle.style.fontWeight = '700';
-                    freeTitle.style.width = '100%';
-                    freeTitle.style.textAlign = 'center';
+                    freeTitle.className = 'single-draw-subtitle single-draw-subtitle-free';
                     wrapper.appendChild(freeTitle);
                     
                     const freeList = document.createElement('ul');
-                    freeList.style.display = 'grid';
-                    freeList.style.gridTemplateColumns = 'repeat(auto-fit, minmax(100px, 1fr))';
-                    freeList.style.gap = '6px';
-                    freeList.style.listStyle = 'none';
-                    freeList.style.padding = '0';
-                    freeList.style.margin = '0 0 12px 0';
-                    freeList.style.width = '100%';
+                    freeList.className = 'single-winner-list single-winner-list-plantso';
                     
                     free.forEach((winner, index) => {
                         const li = document.createElement('li');
                         const name = typeof winner === 'string' ? winner : winner.name;
-                        const gender = typeof winner === 'string' ? '' : (winner.gender || '');
                         
-                        let content = name;
-                        if (gender) {
-                            content += ` <span style="font-size: 0.75em; opacity: 0.8;">(${gender})</span>`;
-                        }
-                        
-                        li.innerHTML = content;
-                        li.style.background = 'rgba(76, 175, 80, 0.2)';
-                        li.style.borderRadius = '6px';
-                        li.style.padding = '5px 7px';
-                        li.style.textAlign = 'center';
-                        li.style.color = '#000000';
-                        li.style.fontSize = '0.9em';
+                        li.textContent = name;
+                        li.className = 'single-winner-item single-winner-item-free';
                         li.style.animation = `fadeInUp 0.5s ease-out forwards`;
                         li.style.opacity = '0';
                         li.style.transform = 'translateY(20px)';
@@ -197,40 +173,18 @@ function renderDrawResult(key, state, drawOptions, wrapper, isSingle = false) {
                 if (discount.length > 0) {
                     const discountTitle = document.createElement('h4');
                     discountTitle.textContent = '🏷️ %30 İndirim Workshop (5 kişi)';
-                    discountTitle.style.color = '#FF9800';
-                    discountTitle.style.marginBottom = '10px';
-                    discountTitle.style.fontSize = '1.05em';
-                    discountTitle.style.fontWeight = '700';
-                    discountTitle.style.width = '100%';
-                    discountTitle.style.textAlign = 'center';
+                    discountTitle.className = 'single-draw-subtitle single-draw-subtitle-discount';
                     wrapper.appendChild(discountTitle);
                     
                     const discountList = document.createElement('ul');
-                    discountList.style.display = 'grid';
-                    discountList.style.gridTemplateColumns = 'repeat(auto-fit, minmax(100px, 1fr))';
-                    discountList.style.gap = '6px';
-                    discountList.style.listStyle = 'none';
-                    discountList.style.padding = '0';
-                    discountList.style.margin = '0';
-                    discountList.style.width = '100%';
+                    discountList.className = 'single-winner-list single-winner-list-plantso';
                     
                     discount.forEach((winner, index) => {
                         const li = document.createElement('li');
                         const name = typeof winner === 'string' ? winner : winner.name;
-                        const gender = typeof winner === 'string' ? '' : (winner.gender || '');
                         
-                        let content = name;
-                        if (gender) {
-                            content += ` <span style="font-size: 0.75em; opacity: 0.8;">(${gender})</span>`;
-                        }
-                        
-                        li.innerHTML = content;
-                        li.style.background = 'rgba(255, 152, 0, 0.2)';
-                        li.style.borderRadius = '6px';
-                        li.style.padding = '5px 7px';
-                        li.style.textAlign = 'center';
-                        li.style.color = '#000000';
-                        li.style.fontSize = '0.9em';
+                        li.textContent = name;
+                        li.className = 'single-winner-item single-winner-item-discount';
                         li.style.animation = `fadeInUp 0.5s ease-out forwards`;
                         li.style.opacity = '0';
                         li.style.transform = 'translateY(20px)';
@@ -241,37 +195,22 @@ function renderDrawResult(key, state, drawOptions, wrapper, isSingle = false) {
                 }
             } else {
                 const list = document.createElement('ul');
-                list.style.display = 'grid';
-                list.style.gridTemplateColumns = 'repeat(auto-fit, minmax(100px, 1fr))';
-                list.style.gap = '6px';
-                list.style.listStyle = 'none';
-                list.style.padding = '0';
-                list.style.margin = '0';
-                list.style.width = '100%';
+                list.className = 'single-winner-list';
                 winners.forEach((winner, index) => {
                     const li = document.createElement('li');
                     
                     // Winner dapat obje veya string olabilir
                     const name = typeof winner === 'string' ? winner : winner.name;
-                    const gender = typeof winner === 'string' ? '' : (winner.gender || '');
                     const prizeType = typeof winner === 'string' ? '' : (winner.prizeType || '');
                     
                     // Winner kartı oluştur
                     let content = name;
-                    if (gender) {
-                      content += ` <span style="font-size: 0.75em; opacity: 0.8;">(${gender})</span>`;
-                    }
                     if (prizeType) {
                       content += ` <span style="font-size: 0.7em; background: rgba(102, 126, 234, 0.3); padding: 2px 4px; border-radius: 3px; margin-left: 3px;">${prizeType}</span>`;
                     }
                     
                     li.innerHTML = content;
-                    li.style.background = 'rgba(255, 255, 255, 0.12)';
-                    li.style.borderRadius = '6px';
-                    li.style.padding = '5px 7px';
-                    li.style.textAlign = 'center';
-                    li.style.color = '#000000';
-                    li.style.fontSize = '0.9em';
+                    li.className = 'single-winner-item';
                     li.style.animation = `fadeInUp 0.5s ease-out forwards`;
                     li.style.opacity = '0';
                     li.style.transform = 'translateY(20px)';

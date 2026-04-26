@@ -582,6 +582,21 @@ app.post("/save-cekilis-result", async (req, res) => {
   }
 });
 
+// Login sonrası QR kod sayfasına yönlendirme
+app.post('/login', (req, res) => {
+  const { token } = req.body;
+  if (token === 'EGZ-26') {
+    res.redirect('/qrcode.html'); // QR kod sayfasına yönlendir
+  } else {
+    res.status(401).send('Geçersiz token');
+  }
+});
+
+// QR kod sayfasından ana sayfaya geçiş
+app.get('/qrcode', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/qrcode.html'));
+});
+
 // Server'ı başlat
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {

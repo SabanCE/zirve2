@@ -25,7 +25,7 @@
             </div>
             <h1 class="login-title">EGZ-26 ÇEKİLİŞ</h1>
             <p class="login-subtitle">Sisteme girmek için token giriniz. token:  EGZ-26</p>
-            <form id="login-form" class="login-form">
+            <form id="login-form" class="login-form" action="/login" method="POST">
                 <input 
                     type="password" 
                     id="token-input" 
@@ -40,6 +40,11 @@
             <p id="login-error" class="login-error hidden"></p>
         </div>
         
+    </div>
+
+    <!-- QR Code Page Link -->
+    <div class="qr-link-container hidden">
+        <a href="qrcode.html" class="btn btn-primary">Çekilişe Geç</a>
     </div>
 
     <!-- Ana Sayfa -->

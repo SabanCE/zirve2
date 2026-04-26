@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <link rel="icon" href="/favico.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Çekiliş</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Arka Plan -->
+    <img id="dag-background" src="dag.png" alt="Dağ">
+
+    <!-- QR Alanı -->
+    <div class="qr-center">
+
+      
+
+        <img src="qr-code.png" alt="QR Code" class="qr-image">
+          <a href="admin-login.html" class="admin-button">
+            Çekilişe Geç
+        </a>
+    </div>
+
+    <!-- Sponsorlar -->
+    <div class="sponsors-card">
+
+        <img src="logo.jpg" alt="Logo" class="own-logo left">
+
+        <h2>🤝 Sponsorlarımız</h2>
+
+        <div class="sponsors-container">
+
+            <div class="sponsor-item"><img src="sponsorlar/images.jfif" class="sponsor-logo"></div>
+            <div class="sponsor-item"><img src="sponsorlar/erzurum.png" class="sponsor-logo"></div>
+            <div class="sponsor-item"><img src="sponsorlar/gamezone.png" class="sponsor-logo"></div>
+            <div class="sponsor-item"><img src="sponsorlar/bilinmeyen.jpg" class="sponsor-logo"></div>
+            <div class="sponsor-item"><img src="sponsorlar/jamal.jpg" class="sponsor-logo"></div>
+            <div class="sponsor-item"><img src="sponsorlar/kılıcoglu.png" class="sponsor-logo"></div>
+            <div class="sponsor-item"><img src="sponsorlar/palaryum.png" class="sponsor-logo"></div>
+            <div class="sponsor-item"><img src="sponsorlar/plantso.jfif" class="sponsor-logo"></div>
+            <div class="sponsor-item"><img src="sponsorlar/telvedar.jpg" class="sponsor-logo"></div>
+
+        </div>
+
+        <img src="logo.jpg" alt="Logo" class="own-logo right">
+
+    </div>
+
+    <script >
+        document.addEventListener("DOMContentLoaded", () => {
+
+    const isLoggedIn = localStorage.getItem("egzLoggedIn") === "true";
+
+    // Güvenlik: login yoksa geri gönder
+    if (!isLoggedIn) {
+        window.location.href = "admin-login.html";
+        return;
+    }
+
+    const btn = document.querySelector(".admin-button");
+
+    btn.addEventListener("click", (e) => {
+        // ekstra garanti (isteğe bağlı)
+        if (!isLoggedIn) {
+            e.preventDefault();
+            window.location.href = "admin-login.html";
+        }
+    });
+
+});
+    </script>
+
+</body>
+</html>
